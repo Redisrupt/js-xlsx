@@ -44,7 +44,7 @@
 		"blanket": "~1.2.3",
 		"dtslint": "^0.1.2",
 		"jsdom": "~11.1.0",
-		"mocha": "~2.5.3",
+		"mocha": "5.2.0",
 		"typescript": "2.2.0"
 	},
 	"repository": {
