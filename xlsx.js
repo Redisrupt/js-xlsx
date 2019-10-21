@@ -20464,6 +20464,14 @@ function writeFileAsync(filename, wb, opts, cb) {
 	var _cb = cb; if(!(_cb instanceof Function)) _cb = (opts);
 	return _fs.writeFile(filename, writeSync(wb, o), _cb);
 }
+
+function formatValue(val) {
+	if (typeof val.v === 'string') return val.v.trim();
+	if (val.w.includes('%')) return val.v * 100;
+
+	return val.v;
+}
+
 function make_json_row(sheet, r, R, cols, header, hdr, dense, o) {
 	var rr = encode_row(R);
 	var defval = o.defval, raw = o.raw || !o.hasOwnProperty("raw");
@@ -20493,7 +20501,7 @@ function make_json_row(sheet, r, R, cols, header, hdr, dense, o) {
 				else if(raw && v === null) row[hdr[C]] = null;
 				else continue;
 			} else {
-				row[hdr[C]] = raw ? (typeof v === 'string' ? v.trim() : v) : utils.format_cell(val,v,o);
+				row[hdr[C]] = raw ? formatValue(val) : utils.format_cell(val,v,o);
 			}
 			if(v != null) isempty = false;
 		}
