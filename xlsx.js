@@ -20494,7 +20494,7 @@ function make_json_row(sheet, r, R, cols, header, hdr, dense, o) {
 				else if(raw && v === null) row[hdr[C]] = null;
 				else continue;
 			} else {
-				row[hdr[C]] = raw && o.parseFormat ? o.parseFormat(val) : utils.format_cell(val,v,o);
+				row[hdr[C]] = raw && o.formatCellValue ? o.formatCellValue(val) : utils.format_cell(val,v,o);
 			}
 			if(v != null) isempty = false;
 		}
